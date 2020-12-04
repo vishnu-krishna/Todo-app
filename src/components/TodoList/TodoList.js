@@ -5,7 +5,7 @@ import { StyledTodoListWrapper } from "components/TodoList/TodoList.styles"
 
 
 export default function TodoList({ todos, onDelete, onUpdate }) {
-  if (!todos) todos = []
+  // if (!todos) todos = []
 
   // @NOTE(adam): could instead use _.sortBy(todos, ["priority", "task"]), but
   // then I wouldn't be showing off my comparator skills

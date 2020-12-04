@@ -1,5 +1,5 @@
 import { IconButton } from "@material-ui/core"
-import AddIcon from "mdi-react/AddIcon"
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
 import React from "react"
 import useInputValue from "hooks/useInputValue"
 import { StyledField, StyledWrapper } from "components/AddTodo/AddTodo.styles"
@@ -33,7 +33,7 @@ export default function AddTodo({ onAdd, getId }) {
                aria-label="task-input"
                onChange={task.onChange}
                onKeyPress={e => e.key === "Enter" && add()}
-               placeholder="Add new task"
+               placeholder="Enter your Todo list below:"
                type="text"
                value={task.value}
         />
@@ -41,7 +41,7 @@ export default function AddTodo({ onAdd, getId }) {
           onClick={() => add()}
           aria-label="Add"
         >
-          <AddIcon/>
+          <AddCircleOutlineIcon/>
         </IconButton>
       </StyledField>
     </StyledWrapper>

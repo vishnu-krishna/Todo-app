@@ -7,7 +7,7 @@ import TodoSummary from "components/TodoSummary/TodoSummary"
 import theme from "config/theme"
 import useTodoList from "../hooks/useTodoList"
 import AddTodo from "components/AddTodo/AddTodo"
-import { StyledAppWrapper } from "src/pages/App.styles"
+import { StyledAppWrapper } from "pages/App.styles"
 
 export const App = () => {
   const {

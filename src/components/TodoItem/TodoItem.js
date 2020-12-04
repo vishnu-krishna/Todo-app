@@ -1,5 +1,5 @@
 import { Checkbox, IconButton, MenuItem, TableCell } from "@material-ui/core"
-import TrashIcon from "mdi-react/TrashIcon"
+import DeleteIcon from '@material-ui/icons/Delete'
 import classnames from "classnames"
 import React from "react"
 import { TodoPriority } from "components/AddTodo/AddTodo"
@@ -44,7 +44,7 @@ export default function TodoItem({ onDelete, onUpdate, todo }) {
         style={{ width: 50 }}
       >
         <IconButton aria-label="Delete" onClick={onDelete}>
-          <TrashIcon/>
+          <DeleteIcon/>
         </IconButton>
       </TableCell>
     </StyledTodoItemWrapper>
