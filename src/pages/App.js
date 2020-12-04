@@ -2,12 +2,12 @@ import { MuiThemeProvider } from "@material-ui/core"
 import store from 'store'
 import React from "react"
 import GlobalStyle from "config/globalStyle"
-import TodoList from "containers/TodoList"
-import TodoSummary from "components/TodoSummary"
+import TodoList from "components/TodoList/TodoList"
+import TodoSummary from "components/TodoSummary/TodoSummary"
 import theme from "config/theme"
 import useTodoList from "../hooks/useTodoList"
-import AddTodo from "components/AddTodo"
-import { StyledAppWrapper } from "containers/App.styled"
+import AddTodo from "components/AddTodo/AddTodo"
+import { StyledAppWrapper } from "src/pages/App.styles"
 
 export const App = () => {
   const {

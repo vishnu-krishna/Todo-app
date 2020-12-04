@@ -1,7 +1,7 @@
 import React from "react"
 import { mount } from "enzyme"
 
-import TodoSummary from "src/components/TodoSummary"
+import TodoSummary from "components/TodoSummary/TodoSummary"
 
 describe("TodoSummary", () => {
 

@@ -1,7 +1,7 @@
 import { shallow } from "enzyme"
 import React from "react"
 
-import TodoList from "src/containers/TodoList"
+import TodoList from "components/TodoList/TodoList"
 
 describe("TodoList", () => {
 

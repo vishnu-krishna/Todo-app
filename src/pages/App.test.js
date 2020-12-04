@@ -1,7 +1,7 @@
 import { shallow } from "enzyme"
 import React from "react"
 import store from "store"
-import App from "src/containers/App"
+import App from "src/pages/App"
 
 jest.mock("store")
 

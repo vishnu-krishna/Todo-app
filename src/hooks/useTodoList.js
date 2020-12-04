@@ -1,6 +1,5 @@
 import maxBy from "lodash/maxBy"
 import store from 'store'
-
 import { useState } from "react"
 
 export default function useTodoList(existingTodos) {

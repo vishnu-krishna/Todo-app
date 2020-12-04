@@ -1,7 +1,7 @@
 import React from "react"
 import { shallow } from "enzyme"
 
-import AddTodo from "src/components/AddTodo"
+import AddTodo from "components/AddTodo/AddTodo"
 
 describe("AddTodo", () => {
 

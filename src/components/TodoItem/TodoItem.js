@@ -1,10 +1,9 @@
-import { Checkbox, IconButton, MenuItem, Select, TableCell, TableRow } from "@material-ui/core"
+import { Checkbox, IconButton, MenuItem, TableCell } from "@material-ui/core"
 import TrashIcon from "mdi-react/TrashIcon"
 import classnames from "classnames"
-import styled from "styled-components"
-
 import React from "react"
-import { TodoPriority } from "components/AddTodo"
+import { TodoPriority } from "components/AddTodo/AddTodo"
+import { StyledPrioritySelect, StyledTodoItemWrapper } from "components/TodoItem/TodoItem.styles"
 
 
 export default function TodoItem({ onDelete, onUpdate, todo }) {
@@ -12,7 +11,7 @@ export default function TodoItem({ onDelete, onUpdate, todo }) {
   const setPriority = (priority) => onUpdate({ ...todo, priority })
 
   return (
-    <Wrapper className={classnames({ completed: todo.completed })}>
+    <StyledTodoItemWrapper className={classnames({ completed: todo.completed })}>
       <TableCell
         padding="checkbox"
         style={{ width: 50 }}
@@ -30,15 +29,15 @@ export default function TodoItem({ onDelete, onUpdate, todo }) {
         padding="none"
         style={{ width: 120 }}
       >
-        <PrioritySelect
+        <StyledPrioritySelect
           value={todo.priority}
           onChange={(e) => setPriority(parseInt(e.target.value))}
         >
           <MenuItem value={TodoPriority.LOW}>Unimportant</MenuItem>
-          <MenuItem value={TodoPriority.NORMAL}>Normal</MenuItem>
+          <MenuItem value={TodoPriority.MEDIUM}>Normal</MenuItem>
           <MenuItem value={TodoPriority.HIGH}>Important</MenuItem>
-          <MenuItem value={TodoPriority.CRITICAL}>Critical</MenuItem>
-        </PrioritySelect>
+          <MenuItem value={TodoPriority.URGENT}>Critical</MenuItem>
+        </StyledPrioritySelect>
       </TableCell>
       <TableCell
         padding="none"
@@ -48,32 +47,7 @@ export default function TodoItem({ onDelete, onUpdate, todo }) {
           <TrashIcon/>
         </IconButton>
       </TableCell>
-    </Wrapper>
+    </StyledTodoItemWrapper>
   )
 }
 
-const PrioritySelect = styled(Select)`
-  && {
-    font: inherit
-  }
-`
-
-const Wrapper = styled(TableRow)`
-  && {
-    padding-top: 0;
-    padding-bottom: 0;
-
-    * {
-      color: inherit;
-    }
-
-    &.completed {
-      color: #999;
-      text-decoration: line-through;
-    }
-  }
-
-  .handle {
-    cursor: move;
-  }
-`

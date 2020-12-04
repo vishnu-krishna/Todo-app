@@ -1,7 +1,7 @@
-import { Table, TableBody } from "@material-ui/core"
-import styled from "styled-components"
+import { TableBody } from "@material-ui/core"
 import React from "react"
-import TodoItem from "components/TodoItem"
+import TodoItem from "components/TodoItem/TodoItem"
+import { StyledTodoListWrapper } from "components/TodoList/TodoList.styles"
 
 
 export default function TodoList({ todos, onDelete, onUpdate }) {
@@ -17,7 +17,7 @@ export default function TodoList({ todos, onDelete, onUpdate }) {
   })
 
   return (
-    <Wrapper>
+    <StyledTodoListWrapper>
       <TableBody>
         {todos.map(todo => (
           <TodoItem
@@ -28,19 +28,8 @@ export default function TodoList({ todos, onDelete, onUpdate }) {
           />
         ))}
       </TableBody>
-    </Wrapper>
+    </StyledTodoListWrapper>
   )
 }
 
-// @NOT(adam): there are better ways to redefine the style for Material UI
-// components, but this way has the advantage of keeping everything in the one
-// file, and given the size/scope of the project, this approach is a reasonable
-// tradeoff
-const Wrapper = styled(Table)`
-  && {
-    background: #FFF;
-    box-shadow: 5px 5px 0 0 rgba(0, 0, 0, 0.15);
-    width: 480px;
-    max-width: 95%;
-  }
-`
+
