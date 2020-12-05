@@ -1,7 +1,6 @@
 import { MuiThemeProvider } from "@material-ui/core"
 import store from 'store'
 import React from "react"
-import GlobalStyle from "config/globalStyle"
 import TodoList from "components/TodoList/TodoList"
 import TodoSummary from "components/TodoSummary/TodoSummary"
 import theme from "config/theme"
@@ -17,16 +16,15 @@ export const App = () => {
     todos,
     updateTodo,
   } = useTodoList(store.get("todos"))
-
   const hasTodos = todos.length > 0
 
   return (
     <>
-      <GlobalStyle/>
       <MuiThemeProvider theme={theme}>
         <StyledAppWrapper>
           {hasTodos && (
             <TodoList
+              id={'todo-list'}
               onDelete={deleteTodo}
               onUpdate={updateTodo}
               todos={todos}

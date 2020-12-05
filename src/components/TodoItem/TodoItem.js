@@ -17,6 +17,7 @@ export default function TodoItem({ onDelete, onUpdate, todo }) {
         style={{ width: 50 }}
       >
         <Checkbox
+          data-testid={'checkbox'}
           checked={todo.completed}
           disableRipple={true}
           onClick={toggleCompletion}
@@ -32,6 +33,7 @@ export default function TodoItem({ onDelete, onUpdate, todo }) {
         <StyledPrioritySelect
           value={todo.priority}
           onChange={(e) => setPriority(parseInt(e.target.value))}
+          data-testid="select"
         >
           <MenuItem value={TodoPriority.LOW}>Unimportant</MenuItem>
           <MenuItem value={TodoPriority.MEDIUM}>Normal</MenuItem>
@@ -43,7 +45,7 @@ export default function TodoItem({ onDelete, onUpdate, todo }) {
         padding="none"
         style={{ width: 50 }}
       >
-        <IconButton aria-label="Delete" onClick={onDelete}>
+        <IconButton aria-label="Delete" onClick={onDelete} data-testid={'delete'}>
           <DeleteIcon/>
         </IconButton>
       </TableCell>

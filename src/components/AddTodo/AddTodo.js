@@ -38,6 +38,7 @@ export default function AddTodo({ onAdd, getId }) {
                value={task.value}
         />
         <IconButton
+          data-testid={'add-button'}
           onClick={() => add()}
           aria-label="Add"
         >

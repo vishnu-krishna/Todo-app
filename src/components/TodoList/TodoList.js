@@ -3,12 +3,7 @@ import React from "react"
 import TodoItem from "components/TodoItem/TodoItem"
 import { StyledTodoListWrapper } from "components/TodoList/TodoList.styles"
 
-
-export default function TodoList({ todos, onDelete, onUpdate }) {
-  // if (!todos) todos = []
-
-  // @NOTE(adam): could instead use _.sortBy(todos, ["priority", "task"]), but
-  // then I wouldn't be showing off my comparator skills
+const TodoList = ({ id, todos, onDelete, onUpdate }) => {
   todos.sort((a, b) => {
     if (b.priority !== a.priority) {
       return b.priority - a.priority
@@ -17,7 +12,7 @@ export default function TodoList({ todos, onDelete, onUpdate }) {
   })
 
   return (
-    <StyledTodoListWrapper>
+    <StyledTodoListWrapper data-testid={id}>
       <TableBody>
         {todos.map(todo => (
           <TodoItem
@@ -31,5 +26,7 @@ export default function TodoList({ todos, onDelete, onUpdate }) {
     </StyledTodoListWrapper>
   )
 }
+
+export default TodoList
 
 

@@ -1,44 +1,24 @@
 import React from "react"
-import { shallow } from "enzyme"
-
 import AddTodo from "components/AddTodo/AddTodo"
+import { fireEvent, render } from "@testing-library/react"
 
-describe("AddTodo", () => {
-
+describe("AddTodo Component", () => {
   const sampleId = 1
-
-  const sampleTodo = {
-    completed: false,
-    id: sampleId,
-    priority: 1,
-    task: ""
-  }
-
-  it("should render", () => {
-    expect(shallow(<AddTodo/>))
-      .toMatchSnapshot()
-  })
-
-  it("should update task", () => {
-    const component = shallow(<AddTodo/>)
-    const input = component.find("input")
-    input.simulate("change", { currentTarget: { value: "Test" } })
-  })
-
-  it("should add on hitting enter on input", () => {
+  it('should update the task on typing something and pressing enter in keyboard', () => {
     const sampleOnAdd = jest.fn()
-    const component = shallow(<AddTodo onAdd={sampleOnAdd} getId={() => sampleId}/>)
-    const input = component.find("input")
-    input.simulate("keyPress", { key: "Enter" })
-    expect(sampleOnAdd).toBeCalledWith(sampleTodo)
+    const { getByPlaceholderText } = render(<AddTodo onAdd={sampleOnAdd} getId={() => sampleId}/>)
+    const input = getByPlaceholderText("Enter your Todo list below:")
+    fireEvent.change(input, { target: { value: 'Something' } })
+    fireEvent.keyPress(input, { key: "Enter", code: 13, charCode: 13 })
+    expect(sampleOnAdd).toHaveBeenCalled()
   })
 
-  it("should add on hitting enter on icon button", () => {
+  it('should update the task on typing something and clicking the add icon', () => {
     const sampleOnAdd = jest.fn()
-    const component = shallow(<AddTodo onAdd={sampleOnAdd} getId={() => sampleId}/>)
-    const button = component.find("WithStyles(IconButton)")
-    button.simulate("click")
-    expect(sampleOnAdd).toBeCalledWith(sampleTodo)
+    const { getByPlaceholderText, getByTestId } = render(<AddTodo onAdd={sampleOnAdd} getId={() => sampleId}/>)
+    const input = getByPlaceholderText("Enter your Todo list below:")
+    fireEvent.change(input, { target: { value: 'Something' } })
+    fireEvent.click(getByTestId('add-button'))
+    expect(sampleOnAdd).toHaveBeenCalled()
   })
-
 })

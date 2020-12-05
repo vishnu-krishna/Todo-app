@@ -1,21 +1,20 @@
 import React from "react"
-import { mount } from "enzyme"
-
+import { render } from '@testing-library/react'
 import TodoSummary from "components/TodoSummary/TodoSummary"
 
-describe("TodoSummary", () => {
-
-  it("should render with correct numbers", () => {
-    const sampleTodos = [
-      { completed: true },
-      { completed: true },
-      { completed: false },
-      { completed: true },
-      { completed: false },
-    ]
-    const rendered = mount(<TodoSummary todos={sampleTodos}/>)
-    expect(rendered.text())
-      .toBe("3 of 5 Tasks completed")
+describe("TodoSummary Component", () => {
+  const sampleTodos = [
+    { completed: true },
+    { completed: true },
+    { completed: false },
+    { completed: false },
+    { completed: false },
+  ]
+  it('should have the list of completed tasks as per the input', () => {
+    const { queryByText } = render(
+      <TodoSummary todos={sampleTodos}/>
+    )
+    expect(queryByText('2 of 5 Tasks completed')).toBeInTheDocument()
   })
 
 })

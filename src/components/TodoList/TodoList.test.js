@@ -1,45 +1,26 @@
-import { shallow } from "enzyme"
 import React from "react"
-
 import TodoList from "components/TodoList/TodoList"
+import { fireEvent, render } from "@testing-library/react"
 
-describe("TodoList", () => {
-
-  const sampleTodos = [
-    { id: 3, task: "Or do this second", priority: 1, completed: false },
-    { id: 4, task: "And this, if you have time", priority: 0, completed: false },
-    { id: 2, task: "Do this second", priority: 1, completed: false },
-    { id: 1, task: "Do this first", priority: 2, completed: false },
+describe("TodoList Component", () => {
+  const todos = [
+    { id: 3, task: "This is fourth", priority: 1, completed: false },
+    { id: 4, task: "This is third", priority: 0, completed: false },
+    { id: 2, task: "This is second", priority: 1, completed: false },
+    { id: 1, task: "This is first", priority: 2, completed: false },
   ]
+  const onDelete = jest.fn()
+  const onUpdate = jest.fn()
 
-  it("should render", () => {
-    shallow(<TodoList/>)
+  it('should have the list of completed tasks as per the input', () => {
+    const { queryByText, getAllByTestId } = render(
+      <TodoList todos={todos} onDelete={onDelete} onUpdate={onUpdate}/>
+    )
+    expect(queryByText('This is first')).toBeInTheDocument()
+    expect(queryByText('This is second')).toBeInTheDocument()
+    expect(queryByText('This is third')).toBeInTheDocument()
+    expect(queryByText('This is fourth')).toBeInTheDocument()
+    fireEvent.click(getAllByTestId('delete')[0])
+    expect(onDelete).toHaveBeenCalled()
   })
-
-  it("should render with todos", () => {
-    expect(shallow(<TodoList todos={sampleTodos}/>))
-      .toMatchSnapshot()
-  })
-
-  it("should delete todo", () => {
-    const sampleOnDelete = jest.fn()
-    const component = shallow(<TodoList todos={sampleTodos} onDelete={sampleOnDelete}/>)
-
-    // Delete the todo at the top of the list
-    component.find("TodoItem").first().prop("onDelete")()
-    expect(sampleOnDelete).toBeCalledWith(1)
-  })
-
-  it("should update todo", () => {
-    const sampleOnUpdate = jest.fn()
-    const component = shallow(<TodoList todos={sampleTodos} onUpdate={sampleOnUpdate}/>)
-
-    // Update the todo at the top of the list
-    component.find("TodoItem").first()
-      .prop("onUpdate")({ ...sampleTodos[3], priority: 3 })
-
-    expect(sampleOnUpdate)
-      .toBeCalledWith({ ...sampleTodos[3], priority: 3 })
-  })
-
 })

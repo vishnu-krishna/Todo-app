@@ -1,58 +1,88 @@
 import React from "react"
-import { shallow } from "enzyme"
-
 import TodoItem from "components/TodoItem/TodoItem"
+import { fireEvent, render, within } from "@testing-library/react"
 
-describe("TodoItem", () => {
+describe("TodoItem component", () => {
 
   const sampleId = 1
 
-  const sampleTodo = {
+  const todoList = {
     completed: false,
     id: sampleId,
     priority: 1,
     task: "Do this thing"
   }
-
-  it("should render", () => {
-    expect(shallow(<TodoItem todo={sampleTodo}/>))
-      .toMatchSnapshot()
+  it('should initiate onUpdate when the checkbox is clicked', () => {
+    const onUpdate = jest.fn()
+    const { getByTestId } = render(
+      <TodoItem todo={todoList} onUpdate={onUpdate}/>
+    )
+    const checkbox = getByTestId('checkbox')
+    fireEvent.click(checkbox)
+    expect(onUpdate)
+      .toBeCalledWith({ ...todoList, completed: true })
   })
 
-  it("should complete task", () => {
-    const sampleOnUpdate = jest.fn()
-    const component = shallow(<TodoItem todo={sampleTodo} onUpdate={sampleOnUpdate}/>)
-    const checkbox = component.find("WithStyles(Checkbox)")
-    checkbox.simulate("click")
-    expect(sampleOnUpdate)
-      .toBeCalledWith({ ...sampleTodo, completed: true })
+  it('should initiate onDelete when the delete button is clicked', () => {
+    const onDelete = jest.fn()
+    const { getByTestId } = render(
+      <TodoItem todo={todoList} onDelete={onDelete}/>
+    )
+    const deleteButton = getByTestId('delete')
+    fireEvent.click(deleteButton)
+    expect(onDelete).toHaveBeenCalled()
   })
 
-  it("should delete task", () => {
-    const sampleOnDelete = jest.fn()
-    const component = shallow(<TodoItem todo={{ ...sampleTodo, completed: true }} onDelete={sampleOnDelete}/>)
-    const checkbox = component.find("WithStyles(IconButton)")
-    checkbox.simulate("click")
-    expect(sampleOnDelete)
-      .toBeCalledWith()
+  it('should set the task to incomplete when the checkbox is clicked', () => {
+    const onUpdate = jest.fn()
+    const { getByTestId } = render(
+      <TodoItem todo={{ ...todoList, completed: true }} onUpdate={onUpdate}/>
+    )
+    const checkbox = getByTestId('checkbox')
+    fireEvent.click(checkbox)
+    expect(onUpdate)
+      .toBeCalledWith({ ...todoList, completed: false })
   })
 
-  it("should uncomplete task", () => {
-    const sampleOnUpdate = jest.fn()
-    const component = shallow(<TodoItem todo={{ ...sampleTodo, completed: true }} onUpdate={sampleOnUpdate}/>)
-    const checkbox = component.find("WithStyles(Checkbox)")
-    checkbox.simulate("click")
-    expect(sampleOnUpdate)
-      .toBeCalledWith({ ...sampleTodo, completed: false })
+  it('should call priority 2 on selecting Normal priority', () => {
+    const onUpdate = jest.fn()
+    const { getByRole, getAllByRole } = render(
+      <TodoItem todo={{ ...todoList }} onUpdate={onUpdate}/>
+    )
+
+    fireEvent.mouseDown(getAllByRole('button')[0])
+
+    const listBox = within(getByRole('listbox'))
+    fireEvent.click(listBox.getByText(/normal/i))
+    expect(onUpdate)
+      .toBeCalledWith({ ...todoList, priority: 2 })
   })
 
-  it("should update priority", () => {
-    const sampleOnUpdate = jest.fn()
-    const component = shallow(<TodoItem todo={sampleTodo} onUpdate={sampleOnUpdate} onDelete={}/>)
-    const select = component.find("Styled(WithStyles(WithFormControlContext(Select)))")
-    select.simulate("change", { target: { value: 2 } })
-    expect(sampleOnUpdate)
-      .toBeCalledWith({ ...sampleTodo, priority: 2 })
+  it('should call priority 3 on selecting Important priority', () => {
+    const onUpdate = jest.fn()
+    const { getByRole, getAllByRole } = render(
+      <TodoItem todo={{ ...todoList }} onUpdate={onUpdate}/>
+    )
+
+    fireEvent.mouseDown(getAllByRole('button')[0])
+
+    const listBox = within(getByRole('listbox'))
+    fireEvent.click(listBox.getByText(/\bimportant\b/i))
+    expect(onUpdate)
+      .toBeCalledWith({ ...todoList, priority: 3 })
   })
 
+  it('should call priority 4 on selecting Critical priority', () => {
+    const onUpdate = jest.fn()
+    const { getByRole, getAllByRole } = render(
+      <TodoItem todo={{ ...todoList }} onUpdate={onUpdate}/>
+    )
+
+    fireEvent.mouseDown(getAllByRole('button')[0])
+
+    const listBox = within(getByRole('listbox'))
+    fireEvent.click(listBox.getByText(/critical/i))
+    expect(onUpdate)
+      .toBeCalledWith({ ...todoList, priority: 4 })
+  })
 })
