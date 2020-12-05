@@ -44,7 +44,7 @@ describe("TodoItem component", () => {
       .toBeCalledWith({ ...todoList, completed: false })
   })
 
-  it('should call priority 2 on selecting Normal priority', () => {
+  it('should call priority 2 on selecting medium priority', () => {
     const onUpdate = jest.fn()
     const { getByRole, getAllByRole } = render(
       <TodoItem todo={{ ...todoList }} onUpdate={onUpdate}/>
@@ -53,12 +53,12 @@ describe("TodoItem component", () => {
     fireEvent.mouseDown(getAllByRole('button')[0])
 
     const listBox = within(getByRole('listbox'))
-    fireEvent.click(listBox.getByText(/normal/i))
+    fireEvent.click(listBox.getByText(/medium/i))
     expect(onUpdate)
       .toBeCalledWith({ ...todoList, priority: 2 })
   })
 
-  it('should call priority 3 on selecting Important priority', () => {
+  it('should call priority 3 on selecting high priority', () => {
     const onUpdate = jest.fn()
     const { getByRole, getAllByRole } = render(
       <TodoItem todo={{ ...todoList }} onUpdate={onUpdate}/>
@@ -67,12 +67,12 @@ describe("TodoItem component", () => {
     fireEvent.mouseDown(getAllByRole('button')[0])
 
     const listBox = within(getByRole('listbox'))
-    fireEvent.click(listBox.getByText(/\bimportant\b/i))
+    fireEvent.click(listBox.getByText(/\bhigh\b/i))
     expect(onUpdate)
       .toBeCalledWith({ ...todoList, priority: 3 })
   })
 
-  it('should call priority 4 on selecting Critical priority', () => {
+  it('should call priority 4 on selecting urgent priority', () => {
     const onUpdate = jest.fn()
     const { getByRole, getAllByRole } = render(
       <TodoItem todo={{ ...todoList }} onUpdate={onUpdate}/>
@@ -81,7 +81,7 @@ describe("TodoItem component", () => {
     fireEvent.mouseDown(getAllByRole('button')[0])
 
     const listBox = within(getByRole('listbox'))
-    fireEvent.click(listBox.getByText(/critical/i))
+    fireEvent.click(listBox.getByText(/urgent/i))
     expect(onUpdate)
       .toBeCalledWith({ ...todoList, priority: 4 })
   })

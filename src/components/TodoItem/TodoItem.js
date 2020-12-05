@@ -6,7 +6,6 @@ import { TodoPriority } from "components/AddTodo/AddTodo"
 import { StyledPrioritySelect, StyledTodoItemWrapper } from "components/TodoItem/TodoItem.styles"
 import PropTypes from "prop-types"
 
-
 const TodoItem = ({ onDelete, onUpdate, todo }) => {
   const toggleCompletion = () => onUpdate({ ...todo, completed: !todo.completed })
   const setPriority = (priority) => onUpdate({ ...todo, priority })
@@ -36,10 +35,10 @@ const TodoItem = ({ onDelete, onUpdate, todo }) => {
           onChange={(e) => setPriority(parseInt(e.target.value))}
           data-testid="select"
         >
-          <MenuItem value={TodoPriority.LOW}>Unimportant</MenuItem>
-          <MenuItem value={TodoPriority.MEDIUM}>Normal</MenuItem>
-          <MenuItem value={TodoPriority.HIGH}>Important</MenuItem>
-          <MenuItem value={TodoPriority.URGENT}>Critical</MenuItem>
+          <MenuItem value={TodoPriority.LOW}>Low</MenuItem>
+          <MenuItem value={TodoPriority.MEDIUM}>Medium</MenuItem>
+          <MenuItem value={TodoPriority.HIGH}>High</MenuItem>
+          <MenuItem value={TodoPriority.URGENT}>Urgent</MenuItem>
         </StyledPrioritySelect>
       </TableCell>
       <TableCell
