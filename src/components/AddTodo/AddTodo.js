@@ -1,7 +1,7 @@
 import { IconButton } from "@material-ui/core"
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
 import React, { useRef } from "react"
-import { StyledField, StyledWrapper } from "components/AddTodo/AddTodo.styles"
+import { StyledButton, StyledInput, StyledWrapper } from "components/AddTodo/AddTodo.styles"
 import PropTypes from 'prop-types'
 import { TodoPriority } from "pages/constants"
 
@@ -22,14 +22,14 @@ const AddTodo = ({ onAdd, getId }) => {
 
   return (
     <StyledWrapper>
-      <StyledField>
-        <input autoFocus
-               aria-label="task-input"
-               onKeyPress={e => e.key === "Enter" && add()}
-               placeholder="Enter your Todo list below:"
-               type="text"
-               ref={textInputRef}
-        />
+      <StyledInput autoFocus
+                   aria-label="task-input"
+                   onKeyPress={e => e.key === "Enter" && add()}
+                   placeholder="Enter your todo list here"
+                   type="text"
+                   ref={textInputRef}
+      />
+      <StyledButton>
         <IconButton
           data-testid={'add-button'}
           onClick={() => add()}
@@ -37,7 +37,8 @@ const AddTodo = ({ onAdd, getId }) => {
         >
           <AddCircleOutlineIcon/>
         </IconButton>
-      </StyledField>
+      </StyledButton>
+
     </StyledWrapper>
   )
 }

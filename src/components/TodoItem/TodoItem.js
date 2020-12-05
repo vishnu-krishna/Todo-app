@@ -1,6 +1,5 @@
 import { Checkbox, IconButton, MenuItem } from "@material-ui/core"
 import DeleteIcon from '@material-ui/icons/Delete'
-import classnames from "classnames"
 import React from "react"
 import { StyledCheckbox, StyledIcon, StyledPrioritySelect, StyledTask, StyledTodoItemWrapper } from "components/TodoItem/TodoItem.styles"
 import PropTypes from "prop-types"
@@ -11,7 +10,7 @@ const TodoItem = ({ onDelete, onUpdate, todo }) => {
   const setPriority = (priority) => onUpdate({ ...todo, priority })
 
   return (
-    <StyledTodoItemWrapper className={classnames({ completed: todo.completed })}>
+    <StyledTodoItemWrapper completed={todo.completed}>
       <StyledCheckbox>
         <Checkbox
           data-testid={'checkbox'}

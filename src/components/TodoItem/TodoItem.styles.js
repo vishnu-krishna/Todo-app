@@ -12,12 +12,7 @@ export const StyledPrioritySelect = styled(Select)`
 export const StyledTodoItemWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-
-  && {
-    &.completed {
-      background: #B1B9CC;
-    }
-  }
+  background: ${props => (props.completed && '#BDE3F2')};
 `
 export const StyledCheckbox = styled.div`
   align-self: center;
