@@ -2,9 +2,9 @@ import { Checkbox, IconButton, MenuItem, TableCell } from "@material-ui/core"
 import DeleteIcon from '@material-ui/icons/Delete'
 import classnames from "classnames"
 import React from "react"
-import { TodoPriority } from "components/AddTodo/AddTodo"
 import { StyledPrioritySelect, StyledTodoItemWrapper } from "components/TodoItem/TodoItem.styles"
 import PropTypes from "prop-types"
+import { TodoPriority } from "pages/constants"
 
 const TodoItem = ({ onDelete, onUpdate, todo }) => {
   const toggleCompletion = () => onUpdate({ ...todo, completed: !todo.completed })

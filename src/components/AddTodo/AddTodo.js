@@ -3,13 +3,7 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
 import React, { useRef } from "react"
 import { StyledField, StyledWrapper } from "components/AddTodo/AddTodo.styles"
 import PropTypes from 'prop-types'
-
-export const TodoPriority = {
-  LOW: 1,
-  MEDIUM: 2,
-  HIGH: 3,
-  URGENT: 4
-}
+import { TodoPriority } from "pages/constants"
 
 const AddTodo = ({ onAdd, getId }) => {
   const textInputRef = useRef(null)
