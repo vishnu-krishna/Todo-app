@@ -1,8 +1,8 @@
-import { Checkbox, IconButton, MenuItem, TableCell } from "@material-ui/core"
+import { Checkbox, IconButton, MenuItem } from "@material-ui/core"
 import DeleteIcon from '@material-ui/icons/Delete'
 import classnames from "classnames"
 import React from "react"
-import { StyledPrioritySelect, StyledTodoItemWrapper } from "components/TodoItem/TodoItem.styles"
+import { StyledCheckbox, StyledIcon, StyledPrioritySelect, StyledTask, StyledTodoItemWrapper } from "components/TodoItem/TodoItem.styles"
 import PropTypes from "prop-types"
 import { TodoPriority } from "pages/constants"
 
@@ -12,43 +12,32 @@ const TodoItem = ({ onDelete, onUpdate, todo }) => {
 
   return (
     <StyledTodoItemWrapper className={classnames({ completed: todo.completed })}>
-      <TableCell
-        padding="checkbox"
-        style={{ width: 50 }}
-      >
+      <StyledCheckbox>
         <Checkbox
           data-testid={'checkbox'}
           checked={todo.completed}
           disableRipple={true}
           onClick={toggleCompletion}
         />
-      </TableCell>
-      <TableCell padding="none">
+      </StyledCheckbox>
+      <StyledTask padding="none">
         {todo.task}
-      </TableCell>
-      <TableCell
-        padding="none"
-        style={{ width: 120 }}
+      </StyledTask>
+      <StyledPrioritySelect
+        value={todo.priority}
+        onChange={(e) => setPriority(parseInt(e.target.value))}
+        data-testid="select"
       >
-        <StyledPrioritySelect
-          value={todo.priority}
-          onChange={(e) => setPriority(parseInt(e.target.value))}
-          data-testid="select"
-        >
-          <MenuItem value={TodoPriority.LOW}>Low</MenuItem>
-          <MenuItem value={TodoPriority.MEDIUM}>Medium</MenuItem>
-          <MenuItem value={TodoPriority.HIGH}>High</MenuItem>
-          <MenuItem value={TodoPriority.URGENT}>Urgent</MenuItem>
-        </StyledPrioritySelect>
-      </TableCell>
-      <TableCell
-        padding="none"
-        style={{ width: 50 }}
-      >
+        <MenuItem value={TodoPriority.LOW}>Low</MenuItem>
+        <MenuItem value={TodoPriority.MEDIUM}>Medium</MenuItem>
+        <MenuItem value={TodoPriority.HIGH}>High</MenuItem>
+        <MenuItem value={TodoPriority.URGENT}>Urgent</MenuItem>
+      </StyledPrioritySelect>
+      <StyledIcon>
         <IconButton aria-label="Delete" onClick={onDelete} data-testid={'delete'}>
           <DeleteIcon/>
         </IconButton>
-      </TableCell>
+      </StyledIcon>
     </StyledTodoItemWrapper>
   )
 }

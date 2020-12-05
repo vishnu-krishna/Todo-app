@@ -1,28 +1,34 @@
 import styled from "styled-components"
-import { Select, TableRow } from "@material-ui/core"
+import { Select } from "@material-ui/core"
 
 export const StyledPrioritySelect = styled(Select)`
   && {
-    font: inherit
+    font: inherit;
+    align-self: center;
+    margin-left: auto;
+    width: 120px;
   }
 `
+export const StyledTodoItemWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
 
-export const StyledTodoItemWrapper = styled(TableRow)`
   && {
-    padding-top: 0;
-    padding-bottom: 0;
-
-    * {
-      color: inherit;
-    }
-
     &.completed {
-      color: #999;
-      text-decoration: line-through;
+      background: #B1B9CC;
     }
   }
-
-  .handle {
-    cursor: move;
-  }
+`
+export const StyledCheckbox = styled.div`
+  align-self: center;
+  margin-right: 10px;
+  width: 50px
+`
+export const StyledTask = styled.div`
+  align-self: center;
+`
+export const StyledIcon = styled.div`
+  align-self: center;
+  width: 50px;
+  margin-left: 20px;
 `

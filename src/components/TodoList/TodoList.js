@@ -1,4 +1,3 @@
-import { TableBody } from "@material-ui/core"
 import React from "react"
 import TodoItem from "components/TodoItem/TodoItem"
 import { StyledTodoListWrapper } from "components/TodoList/TodoList.styles"
@@ -14,16 +13,14 @@ const TodoList = ({ id, todos, onDelete, onUpdate }) => {
 
   return (
     <StyledTodoListWrapper data-testid={id}>
-      <TableBody>
-        {todos.map(todo => (
-          <TodoItem
-            onUpdate={onUpdate}
-            onDelete={() => onDelete(todo.id)}
-            key={todo.id}
-            todo={todo}
-          />
-        ))}
-      </TableBody>
+      {todos.map(todo => (
+        <TodoItem
+          onUpdate={onUpdate}
+          onDelete={() => onDelete(todo.id)}
+          key={todo.id}
+          todo={todo}
+        />
+      ))}
     </StyledTodoListWrapper>
   )
 }
