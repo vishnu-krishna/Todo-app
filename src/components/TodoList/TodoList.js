@@ -2,6 +2,7 @@ import { TableBody } from "@material-ui/core"
 import React from "react"
 import TodoItem from "components/TodoItem/TodoItem"
 import { StyledTodoListWrapper } from "components/TodoList/TodoList.styles"
+import PropTypes from "prop-types"
 
 const TodoList = ({ id, todos, onDelete, onUpdate }) => {
   todos.sort((a, b) => {
@@ -25,6 +26,21 @@ const TodoList = ({ id, todos, onDelete, onUpdate }) => {
       </TableBody>
     </StyledTodoListWrapper>
   )
+}
+
+
+TodoList.propTypes = {
+  id: PropTypes.string,
+  todos: PropTypes.arrayOf(
+    PropTypes.shape({
+      completed: PropTypes.bool,
+      id: PropTypes.number,
+      priority: PropTypes.number,
+      task: PropTypes.string
+    })
+  ),
+  onDelete: PropTypes.func,
+  onUpdate: PropTypes.func
 }
 
 export default TodoList

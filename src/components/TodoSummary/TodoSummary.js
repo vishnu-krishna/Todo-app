@@ -1,8 +1,9 @@
 import { Typography } from "@material-ui/core"
 import React from "react"
 import { StyledTodoSummaryWrapper } from "components/TodoSummary/TodoSummary.styles"
+import PropTypes from "prop-types"
 
-export default function TodoSummary({ todos }) {
+const TodoSummary = ({ todos }) => {
   const completed = todos.filter(({ completed }) => completed).length
   return (
     <StyledTodoSummaryWrapper>
@@ -13,3 +14,15 @@ export default function TodoSummary({ todos }) {
   )
 }
 
+TodoSummary.propTypes = {
+  todos: PropTypes.arrayOf(
+    PropTypes.shape({
+      completed: PropTypes.bool,
+      id: PropTypes.number,
+      priority: PropTypes.number,
+      task: PropTypes.string
+    })
+  )
+}
+
+export default TodoSummary

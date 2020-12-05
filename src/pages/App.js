@@ -7,6 +7,7 @@ import theme from "config/theme"
 import useTodoList from "../hooks/useTodoList"
 import AddTodo from "components/AddTodo/AddTodo"
 import { StyledAppWrapper } from "pages/App.styles"
+import 'reset-css'
 
 export const App = () => {
   const {

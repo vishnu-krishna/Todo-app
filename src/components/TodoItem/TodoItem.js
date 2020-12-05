@@ -4,9 +4,10 @@ import classnames from "classnames"
 import React from "react"
 import { TodoPriority } from "components/AddTodo/AddTodo"
 import { StyledPrioritySelect, StyledTodoItemWrapper } from "components/TodoItem/TodoItem.styles"
+import PropTypes from "prop-types"
 
 
-export default function TodoItem({ onDelete, onUpdate, todo }) {
+const TodoItem = ({ onDelete, onUpdate, todo }) => {
   const toggleCompletion = () => onUpdate({ ...todo, completed: !todo.completed })
   const setPriority = (priority) => onUpdate({ ...todo, priority })
 
@@ -52,4 +53,18 @@ export default function TodoItem({ onDelete, onUpdate, todo }) {
     </StyledTodoItemWrapper>
   )
 }
+
+TodoItem.propTypes = {
+  onDelete: PropTypes.func,
+  onUpdate: PropTypes.func,
+  todo: PropTypes.shape({
+    completed: PropTypes.bool,
+    id: PropTypes.number,
+    priority: PropTypes.number,
+    task: PropTypes.string
+  })
+}
+
+export default TodoItem
+
 

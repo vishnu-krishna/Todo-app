@@ -3,6 +3,7 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
 import React from "react"
 import useInputValue from "hooks/useInputValue"
 import { StyledField, StyledWrapper } from "components/AddTodo/AddTodo.styles"
+import PropTypes from 'prop-types'
 
 export const TodoPriority = {
   LOW: 1,
@@ -11,7 +12,7 @@ export const TodoPriority = {
   URGENT: 4
 }
 
-export default function AddTodo({ onAdd, getId }) {
+const AddTodo = ({ onAdd, getId }) => {
   const task = useInputValue("")
 
   const add = () => {
@@ -49,3 +50,10 @@ export default function AddTodo({ onAdd, getId }) {
   )
 }
 
+
+AddTodo.propTypes = {
+  onAdd: PropTypes.func,
+  getId: PropTypes.func
+}
+
+export default AddTodo

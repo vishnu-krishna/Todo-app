@@ -18,6 +18,7 @@
         "react-dom": "^17.0.1",
         "react-scripts": "4.0.1",
         "reactjs-localstorage": "^1.0.1",
+        "reset-css": "^5.0.1",
         "store": "^2.0.12",
         "styled-components": "^5.2.1",
         "styled-reset-advanced": "^1.0.3",
@@ -33,7 +34,22 @@
         "eject": "react-scripts eject"
     },
     "jest": {
-        "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"]
+        "transformIgnorePatterns": [
+            "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
+        ]
+    },
+    "stylelint": {
+        "extends": "stylelint-config-recommended",
+        "rules": {
+            "at-rule-no-unknown": [
+                true,
+                {
+                    "ignoreAtRules": [
+                        "import-normalise"
+                    ]
+                }
+            ]
+        }
     },
     "eslintConfig": {
         "extends": [
