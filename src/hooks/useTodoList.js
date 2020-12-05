@@ -1,4 +1,3 @@
-import maxBy from "lodash/maxBy"
 import store from 'store'
 import { useState } from "react"
 
@@ -17,7 +16,7 @@ export default function useTodoList(existingTodos) {
     if (!todos.length) {
       return 1
     }
-    return maxBy(todos, "id").id + 1
+    return todos.length + 1
   }
 
   const updateTodo = (todo) => {

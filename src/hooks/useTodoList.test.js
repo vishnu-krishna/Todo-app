@@ -9,7 +9,7 @@ describe("useTodoList hook", () => {
     { id: 4, task: "Testing2", completed: true, priority: 2 },
   ]
 
-  it("should addTodo", () => {
+  it("should test addTodo", () => {
     const result = renderHook(() => useTodoList()).result
     const addTodo = (...args) => result.current.addTodo(...args)
 
@@ -17,7 +17,7 @@ describe("useTodoList hook", () => {
     expect(result.current.todos).toEqual([ sampleTodos[0] ])
   })
 
-  it("should deleteTodo", () => {
+  it("should test deleteTodo", () => {
     const result = renderHook(() => useTodoList([ ...sampleTodos ])).result
     const deleteTodo = (...args) => result.current.deleteTodo(...args)
 
@@ -25,12 +25,12 @@ describe("useTodoList hook", () => {
     expect(result.current.todos).toEqual([ sampleTodos[1] ])
   })
 
-  it("should getNextTodoId", () => {
+  it("should test getNextTodoId", () => {
     const result = renderHook(() => useTodoList(sampleTodos)).result
     const getNextTodoId = (...args) => result.current.getNextTodoId(...args)
 
     expect(getNextTodoId())
-      .toBe(5)
+      .toBe(3)
   })
 
   it("should getNextTodoId for first ID", () => {
@@ -41,7 +41,7 @@ describe("useTodoList hook", () => {
       .toBe(1)
   })
 
-  it("should updateTodo", () => {
+  it("should test updateTodo", () => {
     const result = renderHook(() => useTodoList(sampleTodos)).result
     const updateTodo = (...args) => result.current.updateTodo(...args)
 
