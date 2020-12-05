@@ -1,7 +1,6 @@
 import { IconButton } from "@material-ui/core"
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
-import React from "react"
-import useInputValue from "hooks/useInputValue"
+import React, { useRef } from "react"
 import { StyledField, StyledWrapper } from "components/AddTodo/AddTodo.styles"
 import PropTypes from 'prop-types'
 
@@ -13,18 +12,18 @@ export const TodoPriority = {
 }
 
 const AddTodo = ({ onAdd, getId }) => {
-  const task = useInputValue("")
-
+  const textInputRef = useRef(null)
   const add = () => {
-    onAdd({
-      id: getId(),
-      completed: false,
-      priority: TodoPriority.MEDIUM,
-      task: task.value
-    })
-
-    // Reset input
-    task.setValue("")
+    const enteredText = textInputRef.current.value
+    if (!!enteredText) {
+      onAdd({
+        id: getId(),
+        completed: false,
+        priority: TodoPriority.MEDIUM,
+        task: enteredText
+      })
+      textInputRef.current.value = ''
+    }
   }
 
   return (
@@ -32,11 +31,10 @@ const AddTodo = ({ onAdd, getId }) => {
       <StyledField>
         <input autoFocus
                aria-label="task-input"
-               onChange={task.onChange}
                onKeyPress={e => e.key === "Enter" && add()}
                placeholder="Enter your Todo list below:"
                type="text"
-               value={task.value}
+               ref={textInputRef}
         />
         <IconButton
           data-testid={'add-button'}
