@@ -32,11 +32,11 @@ const TodoList = ({ id, todos, onDelete, onUpdate }) => {
       {todos.map(todo => (
         <motion.div variants={totalListVariant}
                     initial="hidden"
-                    animate="visible">
+                    animate="visible"
+                    key={todo.id}>
           <TodoItem
             onUpdate={onUpdate}
             onDelete={() => onDelete(todo.id)}
-            key={todo.id}
             todo={todo}
           />
         </motion.div>
