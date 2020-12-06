@@ -32,6 +32,7 @@ export const StyledInput = styled.input`
   &::placeholder {
     color: inherit;
     opacity: 0.7;
+    font-size: medium;
   }
 
   &:focus {

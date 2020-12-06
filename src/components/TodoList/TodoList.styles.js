@@ -5,5 +5,4 @@ export const StyledTodoListWrapper = styled.div`
   flex-direction: column;
   background: #FFFFFF;
   width: 480px;
-
 `

@@ -2,8 +2,24 @@ import React from "react"
 import TodoItem from "components/TodoItem/TodoItem"
 import { StyledTodoListWrapper } from "components/TodoList/TodoList.styles"
 import PropTypes from "prop-types"
+import { motion } from "framer-motion"
 
 const TodoList = ({ id, todos, onDelete, onUpdate }) => {
+  const totalListVariant = {
+    hidden: {
+      y: -250,
+      opacity: 0
+    },
+    visible: {
+      y: -10,
+      delay: 2,
+      opacity: 1,
+      duration: 2,
+      type: 'spring',
+      stiffness: 120
+    }
+  }
+
   todos.sort((a, b) => {
     if (b.priority !== a.priority) {
       return b.priority - a.priority
@@ -14,12 +30,17 @@ const TodoList = ({ id, todos, onDelete, onUpdate }) => {
   return (
     <StyledTodoListWrapper data-testid={id}>
       {todos.map(todo => (
-        <TodoItem
-          onUpdate={onUpdate}
-          onDelete={() => onDelete(todo.id)}
-          key={todo.id}
-          todo={todo}
-        />
+        <motion.div variants={totalListVariant}
+                    initial="hidden"
+                    animate="visible">
+          <TodoItem
+            onUpdate={onUpdate}
+            onDelete={() => onDelete(todo.id)}
+            key={todo.id}
+            todo={todo}
+          />
+        </motion.div>
+
       ))}
     </StyledTodoListWrapper>
   )

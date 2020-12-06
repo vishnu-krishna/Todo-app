@@ -9,8 +9,23 @@ const TodoItem = ({ onDelete, onUpdate, todo }) => {
   const toggleCompletion = () => onUpdate({ ...todo, completed: !todo.completed })
   const setPriority = (priority) => onUpdate({ ...todo, priority })
 
+  const buttonVariants = {
+    hover: {
+      scale: 1.1,
+      transition: {
+        duration: 0.3,
+        yoyo: 5
+      }
+    }
+  }
+
+  const completeVariants = {
+    completed: { background: '#BDE3F2' },
+    incomplete: { background: '#FFFFFF' }
+  }
   return (
-    <StyledTodoItemWrapper completed={todo.completed}>
+    <StyledTodoItemWrapper animate={todo.completed ? "completed" : "incomplete"}
+                           variants={completeVariants}>
       <StyledCheckbox>
         <Checkbox
           data-testid={'checkbox'}
@@ -32,9 +47,10 @@ const TodoItem = ({ onDelete, onUpdate, todo }) => {
         <MenuItem value={TodoPriority.HIGH}>High</MenuItem>
         <MenuItem value={TodoPriority.URGENT}>Urgent</MenuItem>
       </StyledPrioritySelect>
-      <StyledIcon>
+      <StyledIcon variants={buttonVariants}
+                  whileHover="hover">
         <IconButton aria-label="Delete" onClick={onDelete} data-testid={'delete'}>
-          <DeleteIcon/>
+          <DeleteIcon style={{ fill: "#BF4A06" }}/>
         </IconButton>
       </StyledIcon>
     </StyledTodoItemWrapper>

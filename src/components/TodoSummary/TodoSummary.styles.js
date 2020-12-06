@@ -5,5 +5,6 @@ export const StyledTodoSummaryWrapper = styled.div`
 
   span {
     font-size: large;
+    color: #E1F2F9;
   }
 `
