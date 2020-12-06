@@ -5,6 +5,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Deployed Application Link
 [Heroku Todo List Application](https://todo-list-react-vishnu.herokuapp.com/ )
 
+## Unit test coverage
+
+![image](https://user-images.githubusercontent.com/19182523/101270561-44ae5b00-37ce-11eb-978e-fded0f548e2d.png)
+
+
 ## Available Scripts
 
 In the project directory, you can run:
